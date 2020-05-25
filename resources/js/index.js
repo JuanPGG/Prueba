@@ -92,11 +92,11 @@ function scroll(){
     var desp = window.pageYOffset;
     console.log(desp);
     if(desp >= 80){
-        left.style.transition= "transform 1s";
+        left.style.transition= "transform 1s, opacity 1s";
         left.style.transform = 'translateX(0px)';
         left.style.opacity = '1';
         left.style.position = 'relative';
-        right.style.transition= "transform 1s";
+        right.style.transition= "transform 1s, opacity 1s";
         right.style.transform = 'translateX(0px)';
         right.style.opacity = '1';
     }
