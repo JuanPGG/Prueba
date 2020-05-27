@@ -8,6 +8,76 @@ body{
     font-family: 'Fira Sans';
     overflow-x: hidden;
 }
+/* LOADER */
+.hidden{
+    overflow: hidden;
+}
+.centrado{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: white;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000000000000;
+}
+.pl, .pl:before, .pl:after {
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.pl {
+    margin: 0 auto 1.5em auto;
+    position: relative;
+    width: 3em;
+    height: 3em;
+}
+.pl:before, .pl:after {
+    background: currentColor;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    transform-origin: 50% 100%; 
+    clip-path: polygon(0 0,100% 0,50% 100%);
+    -webkit-clip-path: polygon(0 0,100% 0,50% 100%);
+}
+.pl-hourglass {
+    animation-name: hourglassA;
+    background: #a3a3a3;
+    clip-path: polygon(0 0,100% 0,50% 50%,100% 100%,0 100%,50% 50%);
+    -webkit-clip-path: polygon(0 0,100% 0,50% 50%,100% 100%,0 100%,50% 50%);
+}
+.pl-hourglass:before, .pl-hourglass:after {
+    position: static;
+    clip-path: none;
+    -webkit-clip-path: none;
+}
+.pl-hourglass:before {
+    animation-name: hourglassB;
+}
+.pl-hourglass:after {
+    animation-name: hourglassC;
+}
+@keyframes hourglassA {
+    from, 75% { transform: rotate(0) }
+    to { transform: rotate(180deg) }
+}
+@keyframes hourglassB {
+    from { transform: scaleY(1) }
+    50%, to { transform: scaleY(0) }
+}
+@keyframes hourglassC {
+    from { transform: scaleY(0) }
+    50%, to { transform: scaleY(1) }
+}
+
+/* END LOADER */
 #nav-up{
     width: 100%;
     height: 45px;
@@ -109,23 +179,20 @@ nav{
 .contenedor{
     width: 100%;
     height: auto;
-    padding: 90px 100px;
+    padding: 170px 100px 67px 100px;
     text-align: center;
 }
 .contenedor > p{
-    font-size: ;
     font-weight: 600;
     color: darkred;
-    margin-bottom: 15px;
-    transform: translateY(-80px);
-    opacity: 0;
+    margin-bottom: 5px;
+    font-size: 14px;
 }
 .contenedor > h2{
     font-size: 33px;
     color: var(--color1);
     margin-bottom: 20px;
-    transform: translateY(-80px);
-    opacity: 0;
+    font-weight: 900;
 }
 .contenedor > h2::after{
     content:"";
@@ -137,103 +204,60 @@ nav{
     background: darkred;
     margin-bottom: 15px;
 }
-#cont-form{
+#contenido img, #texto{
+    transform: translateY(100px);
+    opacity: 0;
+}
+#texto{
     width: 100%;
-    height: 300px;
-    margin-top: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+#texto p{
+    margin-bottom: 30px;
+    line-height: 2;
+    color: gray;
+    font-size: 14px;
+}
+#texto h4{
+    margin-bottom: 30px;
+}
+#slider{
+    width: 90%;
+    margin:auto;
     display: flex;
     justify-content: space-around;
-}
-#left{
-    width: 47%;
-    transform: translateX(-47%);
-    opacity: 0;
-    position: absolute;
-}
-.left .txt{
-    width: 95%;
-    float: left;
-}
-.left .icon{
-    float: right;
-}
-#left .icon{
-    width: 20px;
-    height: 20px;
-    background: #595858;
-    display: flex;
-    justify-content: center;
     align-items: center;
-    color:white;
-    border-radius: 50%;
-    font-size: 7px;
-    font-weight: 600;
+    overflow: hidden;
 }
-#left .left{
+#slider ul{
     width: 100%;
-    height: 50px;
-    background: lightgray;
-    text-align: left;
-    align-items: center;
+    list-style: none;
     display: flex;
-    padding:10px;
-    cursor: pointer;
-    border-radius: 5px;
+    animation: slide 60s alternate infinite;
 }
-#left .oculto{
-    width: 100%;
-    color:gray;
-    text-align: left;
-    padding: 20px;
-    display: none;
+#slider li{
+    margin:0 100px 0 0;
 }
-#right{
-    width: 47%;
-    background: #f2f2f2;
-    padding: 20px 18px;
-    box-shadow: 0 0 20px 0 gray;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    border-radius: 5px;
-    transform: translateX(300px);
-    opacity: 0;
+#slider img{
+    width: 100px;
 }
-#right li{
-    margin-bottom: 20px;
-    list-style: red;
-}
-#right input{
-    width: 45%;
-    height: 40px;
-    padding: 15px;
-    margin-bottom: 20px;
-}
-#right input#name{
-    float: left;
-}
-#right input#email{
-    float: right;
-}
-#right textarea{
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 20px 15px 0;
-}
-#right button{
-    float: left;
-    border: none;
-    padding: 13px 18px;
-    background: darkred;
-    color: white;
-    border-top-left-radius: 30px;
-    border-bottom-left-radius: 30px;
-    border-top-right-radius: 30px;
-    border-bottom-right-radius: 30px;
-    cursor: pointer;
-}
-#right button:hover{
-    background: black;
+@keyframes slide{
+    from{margin-left: 0px;}
+
+    14.28%{transform: translateX(0px);}
+
+    28.56%{transform: translateX(-150px);}
+
+    42.84%{transform: translateX(-350px);}
+
+    57.12%{transform: translateX(-550px);}
+
+    71.4%{transform: translateX(-750px);}
+
+    85.68%{transform: translateX(-950px);}
+
+    to{transform: translateX(0px);}
 }
 #footer{
     width: 100%;
@@ -357,6 +381,9 @@ nav{
     }
 }
 @media screen and (max-width: 1024px){
+    #nav-up p{
+        margin-left: 10px;
+    }
     .icono{
         display:block;
         cursor: pointer;
